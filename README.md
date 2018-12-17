@@ -131,3 +131,40 @@ java 中时间
 	c2.add(Calendar.DATE, 1);
 	String lastDayOfWeek = new SimpleDateFormat("yyyy-MM-dd").format(c2.getTime());
 	System.out.println(lastDayOfWeek);
+	
+	//本季度开始时间
+	Calendar c3 = Calendar.getInstance();
+	int currentMonth = c3.get(Calendar.MONTH) + 1;
+	SimpleDateFormat longSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat shortSdf = new SimpleDateFormat("yyyy-MM-dd");
+	String firstDayOfQuarter = null;
+	String firstTimeOfQuarter = null;
+	try {
+		if (currentMonth >= 1 && currentMonth <= 3)
+			c3.set(Calendar.MONTH, 0);
+		else if (currentMonth >= 4 && currentMonth <= 6)
+			c3.set(Calendar.MONTH, 3);
+		else if (currentMonth >= 7 && currentMonth <= 9)
+			c3.set(Calendar.MONTH, 4);
+		else if (currentMonth >= 10 && currentMonth <= 12)
+			c3.set(Calendar.MONTH, 9);
+		c3.set(Calendar.DATE, 1);
+		firstDayOfQuarter = shortSdf.format(c3.getTime());
+		firstTimeOfQuarter = longSdf.format(longSdf.parse(firstDayOfQuarter + " 00:00:00"));
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	System.out.println(firstDayOfQuarter);
+	System.out.println(firstTimeOfQuarter);
+	//本季度结束时间， < 2019-01-01
+	Calendar c4 = Calendar.getInstance();
+	try {
+		c4.setTime(longSdf.parse(firstDayOfQuarter + " 00:00:00"));
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+	c4.add(Calendar.MONTH, 3);
+	String lastDateOfQuarter = shortSdf.format(c4.getTime());
+	String lastTimeOfQuarter = longSdf.format(c4.getTime());
+	System.out.println(lastDateOfQuarter);
+	System.out.println(lastTimeOfQuarter);
