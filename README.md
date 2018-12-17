@@ -17,20 +17,20 @@ js中时间
 	;firstDayOfQuarter="+firstDayOfQuarter + " ;lastDayOfQuarter="+lastDayOfQuarter);
 			
 
-        //格式化日期
-        function timeFormat(date) 
-        {
-           var y = date.getFullYear(); //年
-           var m = date.getMonth() + 1; //月
-           var d = date.getDate(); //日
-           if(m < 10){   
-               m = "0" + m;   
-           }   
-           if(d < 10){   
-               d = "0" + d;   
-           }   
-           return y + "-" + m + "-" + d;
-        }
+    //格式化日期
+    function timeFormat(date) 
+    {
+       var y = date.getFullYear(); //年
+       var m = date.getMonth() + 1; //月
+       var d = date.getDate(); //日
+       if(m < 10){   
+           m = "0" + m;   
+       }   
+       if(d < 10){   
+           d = "0" + d;   
+       }   
+       return y + "-" + m + "-" + d;
+    }
 	//获取这周的周一
 	function getFirstDayOfWeek() 
 	{
